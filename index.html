@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>Portfolio | Manaswi Kulahara</title>
     <!-- Chosen Palette: "Modern Green & Charcoal" - A palette of white (#FFFFFF), a deep charcoal (#1E2125), and a vibrant green (#27AE60) accent. -->
     <!-- Application Structure Plan: A professional portfolio SPA designed for both academic and corporate recruiters. The structure features a fixed top navigation for easy access to all key sections. The layout prioritizes a strong narrative flow: a compelling split-screen hero section for immediate impact, a two-column 'About' section for context, grid-based sections for scannable 'Research & Projects' and 'Publications', and clear 'Skills' and 'Awards' sections to showcase capabilities. This structure was chosen to be more traditional and scannable than the previous timeline, better meeting the expectations of a professional audience while retaining modern interactivity. -->
-    <!-- Visualization & Content Choices: 1. Highlights (HTML Cards): Info -> Key achievements (Publications, Internships). Goal -> Inform/Impact. Method -> Styled HTML cards with icons. Interaction -> Hover effects. Justification -> Professional way to show key stats. 2. Projects/Publications (Grid Layout): Info -> All projects and papers. Goal -> Organize/Showcase. Method -> Card-based grid with illuminating border on hover. Interaction -> Hover to reveal more info/links. Justification -> A more subtle and elegant interaction. 3. Skills (Tag Chips): Info -> Technical skills. Goal -> Organize/Showcase. Method -> Grouped tag-style chips. Interaction -> None. Justification -> More scannable for a wider range of skills from the CV. CONFIRMATION: NO SVG/Mermaid used. -->
+    <!-- Visualization & Content Choices: 1. Highlights (HTML Cards): Info -> Key achievements (Publications, Internships). Goal -> Inform/Impact. Method -> Styled HTML cards with icons. Interaction -> Hover effects. Justification -> Professional way to show key stats. 2. Projects/Publications (Grid Layout): Info -> All projects and papers. Goal -> Organize/Showcase. Method -> Card-based grid with illuminating border on hover. Interaction -> Hover to reveal more info/links. Justification -> A more subtle and elegant interaction. 3. Skills (Tag Chips): Info -> Technical skills. Goal -> Organize/Showcase. Method -> Grouped tag-style chips. Interaction -> Hover effects. Justification -> More scannable for a wider range of skills from the CV. CONFIRMATION: NO SVG/Mermaid used. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -74,6 +74,20 @@
             color: #27AE60;
             border-color: #27AE60;
         }
+        .skill-tag {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background-color: #ddd;
+        }
+        .contact-icon:hover {
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -99,7 +113,7 @@
                 <div class="flex flex-col md:flex-row min-h-[calc(100vh-68px)]">
                     <div class="md:w-3/5 dark-bg text-white flex flex-col justify-center p-8 md:p-16">
                         <p class="text-lg accent-color mb-4 font-semibold">Hello Everyone.</p>
-                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">I'M MANASWI KULAHARA</h1>
+                        <h1 id="headline" class="text-5xl md:text-7xl font-extrabold tracking-tight min-h-[160px] md:min-h-[220px]"></h1>
                         <div class="mt-8 border-2 border-gray-600 rounded-md p-4 flex items-center justify-between max-w-sm">
                            <span class="font-semibold text-lg">Geo-spatial Researcher</span>
                            <a href="#about" class="bg-accent-color h-10 w-10 flex items-center justify-center rounded-full text-white transform transition-transform hover:scale-110">
@@ -188,9 +202,9 @@
                 <h2 class="text-3xl font-bold mb-4 fade-in-up">Let's Connect</h2>
                 <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8 fade-in-up" style="transition-delay: 150ms;">I'm always open to discussing new research, projects, or potential collaboration opportunities. Feel free to reach out.</p>
                 <div class="flex justify-center space-x-8 text-3xl fade-in-up" style="transition-delay: 300ms;">
-                    <a href="mailto:manaswikulahara8@gmail.com" class="text-gray-300 hover:accent-color transition transform hover:scale-125">📧</a>
-                    <a href="https://www.linkedin.com/in/manaswi-kulahara-87b352270/" target="_blank" class="text-gray-300 hover:accent-color transition transform hover:scale-125">🔗</a>
-                    <a href="https://github.com/manaswikulahara" target="_blank" class="text-gray-300 hover:accent-color transition transform hover:scale-125">💻</a>
+                    <a href="mailto:manaswikulahara8@gmail.com" class="text-gray-300 hover:accent-color contact-icon">📧</a>
+                    <a href="https://www.linkedin.com/in/manaswi-kulahara-87b352270/" target="_blank" class="text-gray-300 hover:accent-color contact-icon">🔗</a>
+                    <a href="https://github.com/manaswikulahara" target="_blank" class="text-gray-300 hover:accent-color contact-icon">💻</a>
                 </div>
             </div>
         </section>
@@ -204,12 +218,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const projectsData = [
-                { type: '💼', title: 'NIDM: Spatial Analysis of Fire Incidents', desc: 'Led a geospatial risk assessment of 500+ fire incidents, improving emergency response analysis by 20%.', tech: ['QGIS', 'Google Earth Engine'], link: '#' },
-                { type: '🎓', title: 'ISRO: Martian Paleo-lakes Study', desc: 'Adapted and executed 2D hydrodynamic simulations in HEC-RAS to reconstruct Martian paleo flood events.', tech: ['HEC-RAS', 'DEMs', 'ArcGIS'], link: '#' },
-                { type: '🎓', title: 'UVA: AI-Driven Crop Yield Prediction', desc: 'Designed the geospatial framework for an AI model to enhance crop classification and yield forecasting.', tech: ['Spatial AI', 'Sentinel-2', 'MODIS'], link: '#' },
-                { type: '💼', title: 'Flood Vulnerability of Yamuna Floodplains', desc: 'Major undergraduate project assessing flood vulnerability for a case study in Delhi.', tech: ['Vulnerability Assessment'], link: '#' },
-                { type: '🎓', title: 'Micro-shed Delineation, Manipur', desc: 'Performed watershed management assessment using Cartosat DEM and analyzed vegetation health via NDVI.', tech: ['Watershed Delineation', 'NDVI'], link: '#' },
-                { type: '💼', title: 'Post-COVID Tourism Revival', desc: 'Minor undergraduate project analyzing the revival of tourism in Udaipur post-pandemic.', tech: ['Case Study Analysis'], link: '#' }
+                { type: '💼', title: 'Strategic Site Selection for Retail Expansion', desc: 'Delivered a ranked list of 5 potential locations projected to increase market penetration by an estimated 15-20% based on data-driven analysis.', link: '#' },
+                { type: '💼', title: 'Geospatial Flood Risk Analysis', desc: 'Quantified that over ₹250 Crores in financial exposure was located in high-risk flood zones, providing a direct recommendation for policy review.', link: '#' },
+                { type: '🎓', title: 'AI-Driven Crop Yield Forecasting Model', desc: 'Improved yield prediction accuracy by over 25% compared to traditional methods, providing critical early insights for strategic decision-making.', link: '#' },
+                { type: '💼', title: 'NIDM: Spatial Analysis of Fire Incidents', desc: 'Led a geospatial risk assessment of 500+ fire incidents, improving emergency response time analysis by 20%.', link: '#' },
+                { type: '🎓', title: 'ISRO: Martian Paleo-lakes Study', desc: 'Adapted and executed 2D hydrodynamic simulations in HEC-RAS to reconstruct Martian paleo flood events and inundation patterns.', link: '#' },
+                { type: '🎓', title: 'UVA: AI-Driven Geospatial Framework', desc: 'Designed and implemented the geospatial framework for an AI project, enhancing crop classification and yield forecasting for the agribusiness sector.', link: '#' },
             ];
             
             const projectsGrid = document.getElementById('projects-grid');
@@ -231,6 +245,7 @@
                  { title: 'Leveraging Disaster Net-LLM for Multimodal Disaster Classification', venue: 'IGARSS 2025', link:'#'},
                  { title: 'How Can Multimodal Remote Sensing Datasets Transform Classification via SpatialNet-ViT?', venue: 'IGARSS 2025', link:'#'},
                  { title: 'Harnessing Deep Learning for Enhanced Crop Type Mapping and Yield Prediction', venue: 'ICASSP 2025', link:'#'},
+                 { title: 'Can We Predict Your Next Move Without Breaking Your Privacy?', venue: 'ASONAM 2025', link:'#'},
             ];
             const publicationsGrid = document.getElementById('publications-grid');
             publicationsData.forEach((pub, i) => {
@@ -258,7 +273,7 @@
                 catDiv.style.transitionDelay = `${i * 100}ms`;
                 let skillsHtml = `<h3 class="font-bold text-xl mb-4">${cat.category}</h3><div class="flex flex-wrap gap-2">`;
                 cat.skills.forEach(skill => {
-                    skillsHtml += `<span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">${skill}</span>`;
+                    skillsHtml += `<span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full skill-tag">${skill}</span>`;
                 });
                 skillsHtml += `</div>`;
                 catDiv.innerHTML = skillsHtml;
@@ -325,10 +340,23 @@
                     }
                 });
             };
+
+            const headline = document.getElementById('headline');
+            const textToType = "I'M MANASWI KULAHARA";
+            let i = 0;
+            headline.innerHTML = '';
+            function typeWriter() {
+                if (i < textToType.length) {
+                    headline.innerHTML += textToType.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            setTimeout(typeWriter, 500);
         });
     </script>
 </body>
-
 </html>
+
 
 
