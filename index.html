@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Manaswi Kulahara</title>
+    <!-- Chosen Palette: "Modern Green & Charcoal" - A palette of white (#FFFFFF), a deep charcoal (#1E2125), and a vibrant green (#27AE60) accent. -->
+    <!-- Application Structure Plan: A professional portfolio SPA designed for both academic and corporate recruiters. The structure features a fixed top navigation for easy access to all key sections. The layout prioritizes a strong narrative flow: a compelling split-screen hero section for immediate impact, a two-column 'About' section for context, grid-based sections for scannable 'Research & Projects' and 'Publications', and clear 'Skills' and 'Awards' sections to showcase capabilities. This structure was chosen to be more traditional and scannable than the previous timeline, better meeting the expectations of a professional audience while retaining modern interactivity. -->
+    <!-- Visualization & Content Choices: 1. Highlights (HTML Cards): Info -> Key achievements (Publications, Internships). Goal -> Inform/Impact. Method -> Styled HTML cards with icons. Interaction -> Hover effects. Justification -> Professional way to show key stats. 2. Projects/Publications (Grid Layout): Info -> All projects and papers. Goal -> Organize/Showcase. Method -> Card-based grid with illuminating border on hover. Interaction -> Hover to reveal more info/links. Justification -> A more subtle and elegant interaction. 3. Skills (Tag Chips): Info -> Technical skills. Goal -> Organize/Showcase. Method -> Grouped tag-style chips. Interaction -> None. Justification -> More scannable for a wider range of skills from the CV. CONFIRMATION: NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1E2125;
+        }
+        .accent-color { color: #27AE60; }
+        .bg-accent-color { background-color: #27AE60; }
+        .dark-bg { background-color: #1E2125; }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #27AE60;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #27AE60;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease-in-out;
+        }
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .tab-btn.active {
+            color: #27AE60;
+            border-color: #27AE60;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">
+                Manaswi Kulahara
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#home" class="nav-link active text-gray-600 hover:text-gray-900">Home</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-gray-900">About</a>
+                <a href="#projects" class="nav-link text-gray-600 hover:text-gray-900">Projects</a>
+                <a href="#publications" class="nav-link text-gray-600 hover:text-gray-900">Publications</a>
+                <a href="#skills" class="nav-link text-gray-600 hover:text-gray-900">Skills</a>
+                <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="container mx-auto">
+                <div class="flex flex-col md:flex-row min-h-[calc(100vh-68px)]">
+                    <div class="md:w-3/5 dark-bg text-white flex flex-col justify-center p-8 md:p-16">
+                        <p class="text-lg accent-color mb-4 font-semibold">Hello Everyone.</p>
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">I'M MANASWI KULAHARA</h1>
+                        <div class="mt-8 border-2 border-gray-600 rounded-md p-4 flex items-center justify-between max-w-sm">
+                           <span class="font-semibold text-lg">Geo-spatial Researcher</span>
+                           <a href="#about" class="bg-accent-color h-10 w-10 flex items-center justify-center rounded-full text-white transform transition-transform hover:scale-110">
+                                &rarr;
+                           </a>
+                        </div>
+                    </div>
+                    <div class="md:w-2/5 bg-accent-color flex items-center justify-center p-8">
+                        <img src="images/profile-photo.png" alt="Manaswi Kulahara" class="w-full h-auto max-w-sm object-cover rounded-md shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20">
+             <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                <div class="fade-in-up">
+                    <h2 class="text-3xl font-bold mb-6">About Me</h2>
+                    <p class="text-lg text-gray-600 mb-4">I am a Master's candidate at the TERI School of Advanced Studies, specializing in Geo-Informatics. My research focuses on applying remote sensing, hydrological modeling, and spatial AI to deliver actionable insights for tackling pressing environmental challenges.</p>
+                    <p class="text-lg text-gray-600">Through internships at prestigious institutions like <span class="font-semibold accent-color">ISRO</span>, <span class="font-semibold accent-color">NIDM</span>, and the <span class="font-semibold accent-color">University of Virginia</span>, I've developed a strong foundation in predictive modeling and a passion for turning complex data into measurable, sustainable solutions for both public and private sectors.</p>
+                </div>
+                <div class="space-y-6 fade-in-up" style="transition-delay: 200ms;">
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center transition hover:shadow-xl hover:scale-105">
+                        <span class="text-3xl mr-5">🎓</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Academic Excellence</h3>
+                            <p class="text-gray-600">5+ Peer-Reviewed Publications in high-impact IEEE venues.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center transition hover:shadow-xl hover:scale-105">
+                         <span class="text-3xl mr-5">💼</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Professional Experience</h3>
+                            <p class="text-gray-600">High-impact research internships at leading national and international institutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 fade-in-up">Research & Projects</h2>
+                <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 fade-in-up">Key Publications</h2>
+                <div id="publications-grid" class="grid md:grid-cols-2 gap-8">
+                </div>
+                 <div class="text-center mt-12 fade-in-up">
+                     <a href="https://scholar.google.com/citations?user=YOUR_USER_ID" target="_blank" class="bg-accent-color text-white font-semibold py-3 px-6 rounded-lg transition-transform duration-300 transform hover:scale-105 hover:shadow-xl">View on Google Scholar</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 fade-in-up">Technical Skills</h2>
+                <div id="skills-container" class="max-w-4xl mx-auto space-y-8">
+                </div>
+            </div>
+        </section>
+
+        <section id="development" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 fade-in-up">Professional Development</h2>
+                 <div class="max-w-4xl mx-auto fade-in-up">
+                    <div class="border-b border-gray-300 mb-6">
+                        <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
+                            <button data-tab="certs" class="tab-btn whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg active">Certifications</button>
+                            <button data-tab="workshops" class="tab-btn whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">Workshops</button>
+                        </nav>
+                    </div>
+                    <div id="certs-content" class="tab-content"></div>
+                    <div id="workshops-content" class="tab-content hidden"></div>
+                 </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="py-20 text-center dark-bg text-white">
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4 fade-in-up">Let's Connect</h2>
+                <p class="text-lg text-gray-300 max-w-xl mx-auto mb-8 fade-in-up" style="transition-delay: 150ms;">I'm always open to discussing new research, projects, or potential collaboration opportunities. Feel free to reach out.</p>
+                <div class="flex justify-center space-x-8 text-3xl fade-in-up" style="transition-delay: 300ms;">
+                    <a href="mailto:manaswikulahara8@gmail.com" class="text-gray-300 hover:accent-color transition transform hover:scale-125">📧</a>
+                    <a href="https://www.linkedin.com/in/manaswi-kulahara-87b352270/" target="_blank" class="text-gray-300 hover:accent-color transition transform hover:scale-125">🔗</a>
+                    <a href="https://github.com/manaswikulahara" target="_blank" class="text-gray-300 hover:accent-color transition transform hover:scale-125">💻</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 border-t bg-gray-50">
+        <p class="text-gray-500">&copy; 2025 Manaswi Kulahara. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const projectsData = [
+                { type: '💼', title: 'NIDM: Spatial Analysis of Fire Incidents', desc: 'Led a geospatial risk assessment of 500+ fire incidents, improving emergency response analysis by 20%.', tech: ['QGIS', 'Google Earth Engine'], link: '#' },
+                { type: '🎓', title: 'ISRO: Martian Paleo-lakes Study', desc: 'Adapted and executed 2D hydrodynamic simulations in HEC-RAS to reconstruct Martian paleo flood events.', tech: ['HEC-RAS', 'DEMs', 'ArcGIS'], link: '#' },
+                { type: '🎓', title: 'UVA: AI-Driven Crop Yield Prediction', desc: 'Designed the geospatial framework for an AI model to enhance crop classification and yield forecasting.', tech: ['Spatial AI', 'Sentinel-2', 'MODIS'], link: '#' },
+                { type: '💼', title: 'Flood Vulnerability of Yamuna Floodplains', desc: 'Major undergraduate project assessing flood vulnerability for a case study in Delhi.', tech: ['Vulnerability Assessment'], link: '#' },
+                { type: '🎓', title: 'Micro-shed Delineation, Manipur', desc: 'Performed watershed management assessment using Cartosat DEM and analyzed vegetation health via NDVI.', tech: ['Watershed Delineation', 'NDVI'], link: '#' },
+                { type: '💼', title: 'Post-COVID Tourism Revival', desc: 'Minor undergraduate project analyzing the revival of tourism in Udaipur post-pandemic.', tech: ['Case Study Analysis'], link: '#' }
+            ];
+            
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsData.forEach((project, i) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'bg-white p-6 rounded-lg shadow-md project-card fade-in-up';
+                projectCard.style.transitionDelay = `${i * 100}ms`;
+                projectCard.innerHTML = `
+                    <div class="text-3xl mb-4">${project.type}</div>
+                    <h3 class="font-bold text-xl mb-3">${project.title}</h3>
+                    <p class="text-gray-600 mb-4">${project.desc}</p>
+                    <a href="${project.link}" class="font-semibold text-sm accent-color">View Details &rarr;</a>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+
+            const publicationsData = [
+                 { title: 'A CNN-Based Framework for Geometric Alignment of Historical and Satellite Imagery', venue: 'IEEE Access (2025)', link:'#'},
+                 { title: 'Leveraging Disaster Net-LLM for Multimodal Disaster Classification', venue: 'IGARSS 2025', link:'#'},
+                 { title: 'How Can Multimodal Remote Sensing Datasets Transform Classification via SpatialNet-ViT?', venue: 'IGARSS 2025', link:'#'},
+                 { title: 'Harnessing Deep Learning for Enhanced Crop Type Mapping and Yield Prediction', venue: 'ICASSP 2025', link:'#'},
+            ];
+            const publicationsGrid = document.getElementById('publications-grid');
+            publicationsData.forEach((pub, i) => {
+                const pubCard = document.createElement('div');
+                pubCard.className = 'bg-white p-6 rounded-lg shadow-md project-card fade-in-up';
+                pubCard.style.transitionDelay = `${i * 100}ms`;
+                pubCard.innerHTML = `
+                    <h3 class="font-bold text-lg mb-3">${pub.title}</h3>
+                    <p class="text-gray-600 mb-4 font-medium">${pub.venue}</p>
+                    <a href="${pub.link}" target="_blank" class="font-semibold text-sm accent-color">Read Paper &rarr;</a>
+                `;
+                publicationsGrid.appendChild(pubCard);
+            });
+            
+            const skillsData = [
+                { category: 'Programming', skills: ['Python (NumPy, Pandas, GeoPandas)', 'C', 'HTML/CSS', 'JavaScript'] },
+                { category: 'GIS & Remote Sensing', skills: ['QGIS', 'ArcGIS Pro', 'ERDAS Imagine', 'Sentinel', 'MODIS', 'Landsat', 'LULC Classification', 'NDVI'] },
+                { category: 'Hydrodynamic Modeling', skills: ['HEC-HMS', 'HEC-RAS 2D', 'Flood Risk Mapping'] },
+                { category: 'Cloud & Databases', skills: ['Google Earth Engine', 'GEE API', 'COG', 'SQL', 'PostGIS'] },
+            ];
+            const skillsContainer = document.getElementById('skills-container');
+            skillsData.forEach((cat, i) => {
+                const catDiv = document.createElement('div');
+                catDiv.className = 'fade-in-up';
+                catDiv.style.transitionDelay = `${i * 100}ms`;
+                let skillsHtml = `<h3 class="font-bold text-xl mb-4">${cat.category}</h3><div class="flex flex-wrap gap-2">`;
+                cat.skills.forEach(skill => {
+                    skillsHtml += `<span class="bg-gray-200 text-gray-800 text-sm font-semibold px-3 py-1 rounded-full">${skill}</span>`;
+                });
+                skillsHtml += `</div>`;
+                catDiv.innerHTML = skillsHtml;
+                skillsContainer.appendChild(catDiv);
+            });
+            
+            const certificationsData = [
+                { title: 'Supervised Machine Learning: Regression and Classification', issuer: 'DeepLearning.AI & Stanford Online' },
+                { title: 'Spatial Analysis and Satellite Imagery in a GIS', issuer: 'University Of Toronto' },
+                { title: 'Python for Data Science, AI & Development', issuer: 'IBM Developer Skills Network' }
+            ];
+
+            const workshopsData = [
+                { title: 'Cryosphere & Climate Change Studies', host: 'National Institute of Hydrology, Roorkee' },
+                { title: 'Advanced Geocomputational Techniques in Natural Hazards', host: 'Amity University & NIDM' },
+                { title: 'UAV/Drone Application in Environment Management', host: 'TERI School of Advanced Studies' },
+            ];
+
+            const certsContent = document.getElementById('certs-content');
+            certificationsData.forEach(cert => {
+                certsContent.innerHTML += `<div class="bg-white p-4 rounded-lg shadow-sm mb-4"><p class="font-semibold">${cert.title}</p><p class="text-sm text-gray-600">${cert.issuer}</p></div>`;
+            });
+            
+            const workshopsContent = document.getElementById('workshops-content');
+            workshopsData.forEach(workshop => {
+                workshopsContent.innerHTML += `<div class="bg-white p-4 rounded-lg shadow-sm mb-4"><p class="font-semibold">${workshop.title}</p><p class="text-sm text-gray-600">${workshop.host}</p></div>`;
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        if (content.id === `${tabId}-content`) content.classList.remove('hidden');
+                        else content.classList.add('hidden');
+                    });
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { rootMargin: "0px 0px -100px 0px" });
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+            window.onscroll = () => {
+                let current = 'home';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 70) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+        });
+    </script>
+</body>
+</html>
